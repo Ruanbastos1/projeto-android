@@ -1,0 +1,21 @@
+name: Deploy static website to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # ou 'master' se seu branch principal for master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload site files
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .  # envia todos os arquivos da raiz (onde está o index.html)
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
